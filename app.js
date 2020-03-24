@@ -2,14 +2,27 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var bodyParser = require('body-parser');
-var campgrounds = [
-    { name: "Salmon Creek", image: "http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1008587612??hei=64&wid=64&qlt=50" },
-    { name: "Paharganj", image: "https://cdn-blog.queensland.com/wp-content/uploads/2014/04/133096.jpg" },
-    { name: "Lohagarh", image: "https://www.reserveamerica.com/webphotos/racms/articles/images/bca19684-d902-422d-8de2-f083e77b50ff_image2_GettyImages-677064730.jpg" },
-    { name: "Salmon Creek", image: "http://c.shld.net/rpx/i/s/i/spin/image/spin_prod_1008587612??hei=64&wid=64&qlt=50" },
-    { name: "Paharganj", image: "https://cdn-blog.queensland.com/wp-content/uploads/2014/04/133096.jpg" },
-    { name: "Lohagarh", image: "https://www.reserveamerica.com/webphotos/racms/articles/images/bca19684-d902-422d-8de2-f083e77b50ff_image2_GettyImages-677064730.jpg" },
-];
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true});
+
+var campSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+var Campground = mongoose.model("Campground", campSchema);
+
+// Campground.create({
+//     name: "Granite Hill",
+//     image: "https://cdn-blog.queensland.com/wp-content/uploads/2014/04/133096.jpg"
+// }, (err, camp) => {
+//         if (err) {
+//             console.log("Error Found.");
+//         } else {
+//             console.log("New camp added:");
+//             console.log(camp);
+//    }
+// });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -19,15 +32,29 @@ app.get("/", (req, res) => {
 });
 
 app.get("/campgrounds", (req, res) => {
-    res.render("campgrounds", {campgrounds: campgrounds});
+    Campground.find({}, (err, allCamps) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("campgrounds", { campgrounds: allCamps });
+        }
+    });
 });
 
 app.post("/campgrounds", (req, res) => {
     var newName = req.body.name;
     var newImage = req.body.image;
     var temp = { name: newName, image: newImage };
-    campgrounds.push(temp);
-    res.redirect("/campgrounds");
+    Campground.create(temp, (err, camp) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("New campground added.");
+            console.log(camp);
+            res.redirect("/campgrounds");
+        }
+    });
+    
 });
 
 app.get("/campgrounds/new", (req, res) => {
