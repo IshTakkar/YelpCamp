@@ -22,22 +22,24 @@ var seeds = [
 
 
 async function seedsDB() {
+    let campground, comment;
     try {
         await Campground.deleteMany({});
         for (const seed of seeds) {
-            let campground = await Campground.create(seed);
-            let comment = await Comment.create({
+            campground = await Campground.create(seed);
+            comment = await Comment.create({
                 text: 'This place is great, but I wish there was internet! :(',
                 author: 'Ishi'
             });
+            campground.comments.push(comment);
+            campground.save();
         }
-        campground.comments.push();
-        campground.save();
+        
     } catch (err) {
         console.log(err);
         console.log("'Borting!");
     }
-};
+}
 
 
 

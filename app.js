@@ -58,6 +58,17 @@ app.get("/campgrounds/:id", (req, res) => {
     
 });
 
+
+app.get('/campgrounds/:id/comments/new', (req, res) => {
+    Campground.findById(req.params.id, (err, campground) => {
+        if (err) {
+            console.log(err);
+        } else{
+            res.render('newF', { campgrounds: campground });
+        }
+    });
+});
+
 app.listen(3000, () => {
     console.log("Port opened at 3000");
 });
