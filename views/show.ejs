@@ -1,11 +1,50 @@
 <%- include("partials/header") %>
-<h1><%= campgrounds.name %></h1>
-<img src="<%= campgrounds.image %>" style="width: 200px;">
-<p><%= campgrounds.description %></p>
-<% campgrounds.comments.forEach(function(comment){ %>
-<p>
-    <strong><%= comment.author %></strong> - <%= comment.text %>
-</p>
-<% }) %>
 
-<%- include("partials/footer") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">YelpCamp</p>
+            <ul class="list-group">
+                <li class="list-group-item">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="card mb-2 ">
+                <img src="<%= campgrounds.image %>" style="width: 18rem; margin: auto; object-fit: cover;" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-title float-right">$9.00/night</p>
+                    <h5 class="card-title ml-0"><%= campgrounds.name %></h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci aperiam
+                        ducimus voluptates dignissimos vel et alias repudiandae accusamus laborum deserunt suscipit
+                        optio, cupiditate repellendus laudantium fugit fugiat neque est obcaecati tempora error? Alias
+                        labore, quaerat repudiandae unde illo recusandae corrupti cum sit rem illum, eos quo culpa
+                        dolores hic modi laudantium. Inventore iure soluta itaque, explicabo ullam exercitationem aut,
+                        sint eum suscipit molestias ipsam reiciendis? Aspernatur ipsum asperiores doloribus minima
+                        nesciunt minus, adipisci eum illo at quia veritatis cum velit distinctio laudantium repudiandae
+                        numquam dolorum. Repellendus, eligendi? Qui, sit. Dicta vel nesciunt modi facilis, autem
+                        molestiae. Veritatis aspernatur non velit!</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header"><a href="/campgrounds/<%= campgrounds._id %>/comments/new"
+                        class="btn btn-success">Add New Comment</a></div>
+                <div class="card-body bg-light">
+                    <div class="card-text">
+
+                        <% campgrounds.comments.forEach(function(comment){ %>
+                        <p>
+                            <strong><%= comment.author %></strong> <span class="float-right">10 days ago</span>
+                            <br>
+                            <%= comment.text %>
+                        </p>
+                        <% }) %>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,7 @@
     <div class="row flex-column">
         <h1 class="text-center">New comments on <%= campgrounds.name %></h1>
             <div style="width: 30%; margin: 30px auto;" class="d-block">
-                <form action="/campgrounds/<%= campgrounds._id %>" method="POST">
+                <form action="/campgrounds/<%= campgrounds._id %>/comments" method="POST">
                     <div class="form-group">
                         <input class="form-control" type="text" name="comment[text]" placeholder="text">
                     </div>
