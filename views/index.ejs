@@ -10,16 +10,31 @@
 
     <div class="card-deck">
         <% campgrounds.forEach((campground) => { %>
-        <!-- <div class="col-lg-4"> -->
-            <div class="card mb-3" style="min-width: 12rem;">
+            <!-- <div class="card mb-3" style="min-width: 12rem; height: 25%;">
                 <img src="<%= campground.image %>" class="card-img-top">
                 <div class="card-body text-center">
                     <h4 class="card-title"><%= campground.name %></h4>
-                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary mt-4">Go somewhere</a>
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary mt-4">More Info</a>
+                </div>
+            </div> -->
+            <% }); %>
+    </div>
+
+
+    <div class="row row-cols-md-3 row-cols-1">
+        <% campgrounds.forEach((campground) => { %>
+        <div class="col">
+            <div class="card mb-3">
+                <img src="<%= campground.image %>" class="card-img-top">
+                <div class="card-body text-center">
+                    <h3 class="card-title"><%= campground.name %></h3>
+                    <h6 class="card-text"><%= campground.description %></h6>
+                    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary mt-4">More Info</a>
                 </div>
             </div>
-            <% }); %>
-        <!-- </div> -->
+        </div>
+        <% }); %>
     </div>
+
     <%- include("partials/footer") %>
 </div>
