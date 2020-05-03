@@ -5,7 +5,7 @@
         <div class="col-md-3">
             <p class="lead">YelpCamp</p>
             <ul class="list-group">
-                <li class="list-group-item">Info 1</li>
+                <li class="list-group-item bg-primary text-white">Info 1</li>
                 <li class="list-group-item">Info 2</li>
                 <li class="list-group-item">Info 3</li>
             </ul>
@@ -25,6 +25,7 @@
                         nesciunt minus, adipisci eum illo at quia veritatis cum velit distinctio laudantium repudiandae
                         numquam dolorum. Repellendus, eligendi? Qui, sit. Dicta vel nesciunt modi facilis, autem
                         molestiae. Veritatis aspernatur non velit!</p>
+                        <em><p class="card-text">Submitted by <%= campgrounds.author.username %></p></em>
                 </div>
             </div>
             <div class="card">
@@ -35,7 +36,7 @@
 
                         <% campgrounds.comments.forEach(function(comment){ %>
                         <p>
-                            <strong><%= comment.author %></strong> <span class="float-right">10 days ago</span>
+                            <strong><%= comment.author.username %></strong> <span class="float-right">10 days ago</span>
                             <br>
                             <%= comment.text %>
                         </p>
