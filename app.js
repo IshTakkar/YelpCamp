@@ -9,6 +9,7 @@ var methodOverride = require('method-override');
 
 var User = require('./models/user');
 mongoose.connect("mongodb://localhost:27017/yelp_camp", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.set('useFindAndModify', false);
 var campgroundRoutes = require('./routes/campgrounds');
 var commentRoutes = require('./routes/comments');
 var indexRoutes = require('./routes/index1');

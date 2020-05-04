@@ -25,7 +25,11 @@
                         nesciunt minus, adipisci eum illo at quia veritatis cum velit distinctio laudantium repudiandae
                         numquam dolorum. Repellendus, eligendi? Qui, sit. Dicta vel nesciunt modi facilis, autem
                         molestiae. Veritatis aspernatur non velit!</p>
-                        <em><p class="card-text">Submitted by <%= campgrounds.author.username %></p></em>
+                        <em><p class="card-text">Submitted by <%= campgrounds.author.username %></p></em><hr>
+                        <a href="/campgrounds/<%= campgrounds._id %>/edit" class="btn btn-warning">Edit</a>
+                        <form class="d-inline ml-1" action="/campgrounds/<%= campgrounds._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
                 </div>
             </div>
             <div class="card">
