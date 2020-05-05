@@ -12,7 +12,8 @@
         </div>
         <div class="col-md-9">
             <div class="card mb-2 ">
-                <img src="<%= campgrounds.image %>" style="width: 18rem; margin: auto; object-fit: cover;" class="card-img-top">
+                <img src="<%= campgrounds.image %>" style="width: 18rem; margin: auto; object-fit: cover;"
+                    class="card-img-top">
                 <div class="card-body">
                     <p class="card-title float-right">$9.00/night</p>
                     <h5 class="card-title ml-0"><%= campgrounds.name %> - <%= campgrounds.description %></h5>
@@ -25,11 +26,17 @@
                         nesciunt minus, adipisci eum illo at quia veritatis cum velit distinctio laudantium repudiandae
                         numquam dolorum. Repellendus, eligendi? Qui, sit. Dicta vel nesciunt modi facilis, autem
                         molestiae. Veritatis aspernatur non velit!</p>
-                        <em><p class="card-text">Submitted by <%= campgrounds.author.username %></p></em><hr>
-                        <a href="/campgrounds/<%= campgrounds._id %>/edit" class="btn btn-warning">Edit</a>
-                        <form class="d-inline ml-1" action="/campgrounds/<%= campgrounds._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-danger">Delete</button>
-                        </form>
+                    <em>
+                        <p class="card-text">Submitted by <%= campgrounds.author.username %></p>
+                    </em>
+                    <% if(currentUser && campgrounds.author.id.equals(currentUser._id)) {%>
+                    <hr>
+                    <a href="/campgrounds/<%= campgrounds._id %>/edit" class="btn btn-warning">Edit</a>
+                    <form class="d-inline ml-1" action="/campgrounds/<%= campgrounds._id %>?_method=DELETE"
+                        method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <% } %>
                 </div>
             </div>
             <div class="card">
@@ -44,7 +51,11 @@
                             <br>
                             <%= comment.text %>
                         </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
+                        <a href="/campgrounds/<%= campgrounds._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                        <%}%>
                         <% }) %>
+
 
 
                     </div>
