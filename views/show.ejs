@@ -15,7 +15,7 @@
                 <img src="<%= campgrounds.image %>" style="width: 18rem; margin: auto; object-fit: cover;"
                     class="card-img-top">
                 <div class="card-body">
-                    <p class="card-title float-right">$9.00/night</p>
+                    <p class="card-title float-right">$<%= campgrounds.price %>/night</p>
                     <h5 class="card-title ml-0"><%= campgrounds.name %> - <%= campgrounds.description %></h5>
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci aperiam
                         ducimus voluptates dignissimos vel et alias repudiandae accusamus laborum deserunt suscipit
@@ -50,10 +50,11 @@
                             <strong><%= comment.author.username %></strong> <span class="float-right">10 days ago</span>
                             <br>
                             <%= comment.text %>
-                        </p>
+                        
                         <% if(currentUser && comment.author.id.equals(currentUser._id)) {%>
-                        <a href="/campgrounds/<%= campgrounds._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="/campgrounds/<%= campgrounds._id %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-warning ml-1 mb-1">Edit</a>
                         <%}%>
+                        </p>
                         <% }) %>
 
 

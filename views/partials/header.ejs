@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>YelpCamp</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/stylesheets/main.css">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-sm navbar-light bg-light mb-2 justify-content-between">
-            <a class="navbar-brand" href="/">YelpCamp</a>
-            <!-- <div class="collapse navbar-collapse"> -->
-              <ul class="navbar-nav">
-                <% if(!currentUser) { %>
-                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
-                <li class="nav-item"><a href="/register" class="nav-link">Signup</a></li>
-                <% } else {  %>
-                <li class="nav-item"><a href="#" class="nav-link">Signed in as <%= currentUser.username %></a></li>
-                <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
-                <% } %>
-              </ul>
-            <!-- </div> -->
-          </nav>
+
+<head>
+  <title>YelpCamp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light mb-2 justify-content-between">
+    <a class="navbar-brand" href="/">YelpCamp</a>
+    <!-- <div class="collapse navbar-collapse"> -->
+    <ul class="navbar-nav">
+      <% if(!currentUser) { %>
+      <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+      <li class="nav-item"><a href="/register" class="nav-link">Signup</a></li>
+      <% } else {  %>
+      <li class="nav-item"><a href="#" class="nav-link">Signed in as <%= currentUser.username %></a></li>
+      <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+      <% } %>
+    </ul>
+    <!-- </div> -->
+  </nav>
+  <div class="container">
+    <% if(error && error.length > 0) {%>
+    <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
+    <% if(success && success.length > 0) {%>
+    <div class="alert alert-success" role="alert">
+      <%= success %>
+    </div>
+    <% } %>
+  </div>
