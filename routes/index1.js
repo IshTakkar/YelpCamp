@@ -27,14 +27,15 @@ router.post('/register', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    req.flash('success', 'Welcome back!');
     res.render('login'); 
 });
 
 router.post('/login', passport.authenticate('local', {
+    successFlash: 'Welcome back!',
     successRedirect: '/campgrounds',
     failureRedirect: '/login',
-    failureFlash: true
+    failureFlash: true,
+    
 }), (req, res) => {
 });
 
