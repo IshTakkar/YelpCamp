@@ -9,7 +9,17 @@ var flash = require('connect-flash');
 
 
 var User = require('./models/user');
-mongoose.connect("mongodb://localhost:27017/yelp_camp", { useUnifiedTopology: true, useNewUrlParser: true });
+//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect("mongodb+srv://ish:mouse@cluster0-0r1hj.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log('Connected to DB!');
+}).catch(err => {
+    console.log('ERR:', err.message)
+});
+
 mongoose.set('useFindAndModify', false);
 var campgroundRoutes = require('./routes/campgrounds');
 var commentRoutes = require('./routes/comments');
