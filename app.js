@@ -6,11 +6,11 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var methodOverride = require('method-override'); 
 var flash = require('connect-flash');
-
+app.locals.moment = require('moment');
 
 var User = require('./models/user');
-//mongoose.connect("mongodb://localhost:27017/yelp_camp", { useUnifiedTopology: true, useNewUrlParser: true });
-mongoose.connect("mongodb+srv://ish:mouse@cluster0-0r1hj.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://localhost:27017/yelp_camp", { useUnifiedTopology: true, useNewUrlParser: true });
+/* mongoose.connect("mongodb+srv://ish:mouse@cluster0-0r1hj.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -18,7 +18,7 @@ mongoose.connect("mongodb+srv://ish:mouse@cluster0-0r1hj.mongodb.net/test?retryW
     console.log('Connected to DB!');
 }).catch(err => {
     console.log('ERR:', err.message)
-});
+}); */
 
 mongoose.set('useFindAndModify', false);
 var campgroundRoutes = require('./routes/campgrounds');

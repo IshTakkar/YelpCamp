@@ -26,9 +26,9 @@
                         nesciunt minus, adipisci eum illo at quia veritatis cum velit distinctio laudantium repudiandae
                         numquam dolorum. Repellendus, eligendi? Qui, sit. Dicta vel nesciunt modi facilis, autem
                         molestiae. Veritatis aspernatur non velit!</p>
-                    <em>
-                        <p class="card-text">Submitted by <%= campgrounds.author.username %></p>
-                    </em>
+                        <p>
+                            <em>Submitted by: <%= campgrounds.author.username %>, <%= moment(campgrounds.createdAt, "YYYYMMDD").fromNow() %></em>
+                        </p>
                     <% if(currentUser && campgrounds.author.id.equals(currentUser._id)) {%>
                     <hr>
                     <a href="/campgrounds/<%= campgrounds._id %>/edit" class="btn btn-warning">Edit</a>
@@ -47,7 +47,7 @@
 
                         <% campgrounds.comments.forEach(function(comment){ %>
                         <p>
-                            <strong><%= comment.author.username %></strong> <span class="float-right">10 days ago</span>
+                            <strong><%= comment.author.username %></strong> <span class="float-right"><%= moment(comment.createdAt, "YYYYMMDD").fromNow() %></span>
                             <br>
                             <%= comment.text %>
                         
